@@ -7,7 +7,7 @@
 全书正文与编译好的 PDF 位于 [`book/`](book/) 目录：
 
 - **正文源码**：`book/introduction.md`（引言）、`book/chapter1.md` ~ `book/chapter10.md`（第一至第十章）、`book/afterword.md`（后记）
-- **编译版 PDF**：[`book/深入理解-AI-Agent-设计原理与工程实践-v1.0.pdf`](book/深入理解-AI-Agent-设计原理与工程实践-v1.0.pdf)
+- **编译版 PDF**：[`book/深入理解-AI-Agent-李博杰-v1.0.pdf`](book/深入理解-AI-Agent-李博杰-v1.0.pdf)
 - **自行编译**：安装 pandoc、xelatex、ElegantBook 文档类与相关字体后，运行
 
   ```bash
