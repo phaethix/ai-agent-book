@@ -1,5 +1,15 @@
 # 从头训练 LLM
 
+> 📖 **本实验（实验 7-3 从零训 LLM、实验 7-4 从零训 VLM）的完整训练代码在作者 fork 的外部仓库：**
+> - LLM：[`github.com/bojieli/minimind`](https://github.com/bojieli/minimind)（fork 自 jingyaogong/minimind）
+> - VLM（投影层从零训）：[`github.com/bojieli/minimind-v`](https://github.com/bojieli/minimind-v)（fork 自 jingyaogong/minimind-v）
+>
+> ```bash
+> git clone https://github.com/bojieli/minimind.git    minimind
+> git clone https://github.com/bojieli/minimind-v.git  minimind-v
+> ```
+> 本文档记录了在此基础上做的算法改进（QK-Norm + Muon）与实验结果；训练依赖 GPU，请按上游仓库说明复现。
+
 train tokenizer -> pretraining -> SFT (preference + knowledge distillation) -> RLHF (DPO)
 
 ## 算法改进的威力
