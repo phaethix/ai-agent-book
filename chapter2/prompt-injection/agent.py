@@ -269,7 +269,12 @@ def make_client(
 
     from openrouter_fallback import resolve_llm
 
-    requested_model = model or os.getenv("OPENAI_MODEL", "gpt-5.6-luna")
+    # 本实验特意用 gpt-4o-mini 作为默认模型：它是一个“故意可被攻破”的较弱基线。
+    # 只有在这种模型上，才能观察到“防御逐层加强 -> 注入成功率显著下降”的对照曲线
+    # （间接/记忆注入在 D1 无防御下高成功，随 D2/D3/D4 依次降到 0）。
+    # 换成更强的模型（如 gpt-5.6-luna）会在 D1 无防御下就抗住全部三类注入，
+    # 全矩阵成功率为 0，从而抹平了本实验要展示的教学对比。故此处保留 gpt-4o-mini。
+    requested_model = model or os.getenv("OPENAI_MODEL", "gpt-4o-mini")
     # 允许自定义 base_url（默认官方），但请勿指向已失效的第三方网关。
     primary_base_url = base_url or os.getenv("OPENAI_BASE_URL") or None
     # OPENAI_API_KEY 存在 -> 官方直连；否则回退 OPENROUTER_API_KEY。
