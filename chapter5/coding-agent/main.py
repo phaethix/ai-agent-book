@@ -126,12 +126,14 @@ class CodingAgentCLI:
 
             Config.validate()
 
-            # Get provider and configuration
-            provider = Config.get_provider()
-            api_key = Config.get_api_key()
-            # An explicit --base-url wins; otherwise use the provider default
-            base_url = base_url if base_url else Config.get_base_url()
-            model = Config.DEFAULT_MODEL
+            # Resolve the effective provider/key/model, applying the OpenRouter
+            # universal fallback when a direct-provider key is missing.
+            resolved = Config.resolve()
+            provider = resolved["provider"]
+            api_key = resolved["api_key"]
+            model = resolved["model"]
+            # An explicit --base-url wins; otherwise use the resolved base URL
+            base_url = base_url if base_url else resolved["base_url"]
 
             # Initialize agent
             self.agent = CodingAgent(
@@ -142,6 +144,13 @@ class CodingAgentCLI:
             )
 
             print(self.color("✓ Agent initialized successfully", Colors.GREEN))
+            if resolved["fell_back"]:
+                print(self.color(
+                    f"  ⚠️  No {resolved['requested_provider'].upper()} key found — "
+                    f"falling back to OpenRouter", Colors.YELLOW))
+                print(self.color(
+                    f"  Requested provider: {resolved['requested_provider']} "
+                    f"(model '{Config.DEFAULT_MODEL}')", Colors.DIM))
             print(self.color(f"  Provider: {provider}", Colors.DIM))
             print(self.color(f"  Model: {model}", Colors.DIM))
             if base_url:

@@ -77,7 +77,14 @@ python cli.py                     # 等价于 python cli.py pipeline
 
 - **`simulate`（默认，纯离线）**：从已知的潜在实力分模拟对战。因为真值已知，可用来**校验**恢复出的排行榜排序是否正确；`--tie-prob` 控制平局比例，用于演练平局处理。
 - **`arena`（离线）**：加载真实 Chatbot Arena 投票数据（默认 `arena_data.json`，约 2GB），可用 `--sample N` 抽样。
-- **`llm`（需 API）**：用 LLM 做配对评判，并内置**位置偏差消除**——每对交换顺序各评一次，两次判决一致才计胜负、否则记为平局（对应书中 6.4 位置偏差讨论）。仅此来源需要 `ANTHROPIC_API_KEY`。
+- **`llm`（需 API）**：用 LLM 做配对评判，并内置**位置偏差消除**——每对交换顺序各评一次，两次判决一致才计胜负、否则记为平局（对应书中 6.4 位置偏差讨论）。仅此来源需要 LLM API Key。
+
+  **两种评判后端（`--judge-backend {anthropic,openrouter,auto}`，默认 `auto`）**：
+  - `anthropic`：官方 `anthropic` SDK，用 `ANTHROPIC_API_KEY`。
+  - `openrouter`：OpenAI 兼容 SDK 指向 `https://openrouter.ai/api/v1`，用 `OPENROUTER_API_KEY`。内部 Claude 名字会自动映射为 OpenRouter id（`claude-opus-4-8` → `anthropic/claude-opus-4.8`，`claude-haiku-4-5` → `anthropic/claude-haiku-4.5`）；已含 `/` 的 id（如 `openai/gpt-4o-mini`）原样透传。当直连 Anthropic key 缺失或失效时用它兜底。
+  - `auto`（默认）：有 `ANTHROPIC_API_KEY` 走 anthropic，否则回退 openrouter。注意 `auto` 只看 key 是否存在、不校验有效性；若 `ANTHROPIC_API_KEY` 存在但已失效，请显式 `--judge-backend openrouter`。
+
+  位置偏差消除与 A/B/tie 解析逻辑与后端无关，两条路径完全一致。
 
 ### 分步示例
 
@@ -94,9 +101,15 @@ python cli.py leaderboard --input battles.json --top-n 20
 # 用真实 Arena 数据抽样跑（离线）
 python cli.py pipeline --source arena --arena-file arena_data.json --sample 50000 --method bradley-terry --bootstrap 100
 
-# LLM 评判对战（需要 API Key）
+# LLM 评判对战（需要 API Key）——官方 Anthropic
 export ANTHROPIC_API_KEY=sk-...
 python cli.py battle --source llm --candidate-models claude-opus-4-8 claude-haiku-4-5
+
+# LLM 评判对战——通过 OpenRouter 兜底（直连 Anthropic key 缺失/失效时）
+export OPENROUTER_API_KEY=sk-or-...
+python cli.py battle --source llm --judge-backend openrouter \
+  --judge-model claude-opus-4-8 \
+  --candidate-models anthropic/claude-haiku-4.5 openai/gpt-4o-mini
 ```
 
 模拟来源会同时打印真值潜在实力，方便和恢复出的排行榜对照；在线 Elo 与 Bradley-Terry 两种方法都应恢复出与真值一致的排名（分值不必精确对齐，见下文说明）。

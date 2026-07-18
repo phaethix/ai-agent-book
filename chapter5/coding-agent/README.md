@@ -164,6 +164,41 @@ DEFAULT_MODEL=claude-sonnet-5
 
 The agent automatically handles the different API formats for each provider.
 
+### OpenRouter as a universal fallback
+
+You do **not** need a direct Anthropic or OpenAI key to run the agent. If the
+requested direct provider's key is missing, the agent transparently falls back
+to **OpenRouter** (via the OpenAI-compatible SDK) as long as
+`OPENROUTER_API_KEY` is set:
+
+- `PROVIDER=anthropic` **with** `ANTHROPIC_API_KEY` → Anthropic SDK, unchanged (default behavior).
+- `PROVIDER=anthropic` **without** `ANTHROPIC_API_KEY` (but `OPENROUTER_API_KEY` set) → routed through OpenRouter.
+- `PROVIDER=openai` **with** `OPENAI_API_KEY` → OpenAI SDK, unchanged.
+- `PROVIDER=openai` **without** `OPENAI_API_KEY` (but `OPENROUTER_API_KEY` set) → routed through OpenRouter.
+
+When falling back, the native model id is **prefixed/mapped** to an OpenRouter id:
+
+| Requested model | OpenRouter id used |
+|-----------------|--------------------|
+| `claude-sonnet-*` (e.g. `claude-sonnet-5`) | `anthropic/claude-sonnet-4.6` |
+| `claude-haiku-*` | `anthropic/claude-haiku-4.5` |
+| `claude-opus-*` / other `claude-*` | `anthropic/claude-opus-4.8` |
+| `gpt-*` / `o1-*` (e.g. `gpt-4o-mini`) | `openai/<model>` |
+| already prefixed (`vendor/model`) | passed through unchanged |
+
+So a user with **only** an `OPENROUTER_API_KEY` can run, e.g.:
+
+```bash
+# No ANTHROPIC_API_KEY needed — falls back to OpenRouter automatically
+python main.py --provider anthropic --model claude-sonnet-5 -p "..."
+
+# gpt-4o-mini routed through OpenRouter (no OPENAI_API_KEY needed)
+python main.py --provider openai --model gpt-4o-mini -p "..."
+```
+
+Set `PROVIDER=openrouter` explicitly (with a `vendor/model` id) if you want to
+target a specific OpenRouter model without any mapping.
+
 ## 📖 Usage
 
 ### 命令行入口（`main.py`）
