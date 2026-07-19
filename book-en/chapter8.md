@@ -35,7 +35,7 @@ More importantly, externalized learning elevates the Agent's learning capability
 Table 8-1 Three Products of Externalized Learning
 
 | Product Form | Content Carried | Example | Usage Method |
-|------|------|------|------|
+|-------------|----------------------------|----------------------------|---------------------------|
 | Knowledge Base Entry | Facts and rules | "This bank requires the branch address" | Semantic search or `grep` exact retrieval |
 | Dedicated Code Tool | Repeatable operational procedures | "API call sequence for querying account balance" | Solidified as code, called via parameters |
 | Skill Document | Complex but frequently changing work strategies | "Best practices for handling insurance claims" | Natural language document, loaded on demand |
@@ -54,7 +54,7 @@ Table 8-2 categorizes experience learning mechanisms by layer to help readers un
 Table 8-2 Layers of Agent Experience Learning Mechanisms
 
 | Layer | Mechanism | Problem Solved |
-|------|------|-------------|
+|------------------|--------------------------------------|----------------------------------------|
 | Knowledge Distillation | Strategy Summary, Workflow Recording, Failure Reflection | Extract reusable knowledge from successful and failed experiences |
 | Knowledge Organization | Skills, Sleep Consolidation | Structure and index knowledge for storage |
 | Knowledge Application | System Prompt Optimization | Inject knowledge into the Agent's behavior pattern |

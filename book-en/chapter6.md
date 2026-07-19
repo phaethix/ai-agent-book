@@ -52,7 +52,7 @@ Agent: A refund has been initiated for you. The full refund for Order #12345 (Bl
 Table 6-1 Rubric Scoring Example for Customer Service Refund Task
 
 | Dimension | Criteria | Score | Reason |
-|---|---|---|---|
+|------------------------|--------------------------------|------|--------------------------------|
 | Operational Correctness | Is the refund amount and order number correct? | 4 | Correctly queried and initiated a ¥299 full refund |
 | Policy Compliance | Does it follow the 7-day refund policy? | 4 | Order is within the refund period, complies with policy |
 | Information Completeness | Does it inform the amount, arrival time, and refund ID? | 4 | All three key pieces of information were provided |
@@ -254,7 +254,7 @@ To illustrate the difference with a concrete number: Assume the agent's single-a
 Table 6-3 Applicable Scenarios for Pass@k and Pass^k
 
 | Evaluation Purpose | Which Metric to Use | Consequence of Misuse |
-|---|---|---|
+|----------------------------------|---------------|-----------------------------------------------|
 | Verify stability (regression testing) | Pass^k | Using Pass@k masks instability—an agent succeeding only once in five attempts would still show as "pass" |
 | Evaluate capability ceiling (exploratory tasks) | Pass@k or Best@k | Using Pass^k would incorrectly flag failures due to occasional fluctuations—every small change would be judged a failure |
 
@@ -451,7 +451,7 @@ A concrete example illustrates the non-linear growth of costs. Table 6-4 uses th
 **Table 6-4: Three-Round Cost Example for Customer Service Refund Agent**
 
 | Round | Operation | Input Tokens | Output Tokens | Round Cost |
-|------|-----------|-------------|--------------|-----------|
+|-------|--------------------------------------------|------------------------|------------|---------|
 | 1 | System prompt + User question → Decide to query order | 2,500 (2,000 system prompt) | 150 | $0.0098 |
 | 2 | All of previous round + Tool return → Decide to initiate refund | 3,200 (2,000 cache hit) | 120 | $0.0060 |
 | 3 | All of previous round + Refund result → Reply to user | 3,800 (3,200 cache hit) | 200 | $0.0058 |

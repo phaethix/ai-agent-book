@@ -37,7 +37,7 @@ Table 10-1 summarizes the selection criteria for the two architectures from five
 Table 10-1 Selection Criteria for Shared vs. Non-Shared Context
 
 | Selection Criterion | Shared Context | Non-Shared Context |
-|---|---|---|
+|---------------|-----------------------------------|--------------------------------------------|
 | Number of sub-tasks | Few (2-3 roles) | Many (parallel processing needed) |
 | Context window | Can accommodate information for all roles | Single window is insufficient |
 | Parallelism | Primarily serial (roles take turns along the same trajectory) | Can scale massively in parallel (contexts are independent, non-blocking) |
@@ -67,7 +67,7 @@ Table 10-2 summarizes whether different collaboration modes introduce new inform
 Table 10-2 Information Gain Comparison of Multi-Agent Collaboration Modes
 
 | Collaboration Mode | Introduces New Information? | Effect |
-|---|---|---|
+|---------------------------------------|---------------------|-----------------------------------|
 | Self-review by the same model (re-reading its own output) | No | Usually ineffective or even harmful |
 | Different agents debating the same text | No | Comparable to a single agent with equal compute |
 | Reviewer uses test execution results to review code | Yes (execution feedback) | Significant improvement |
@@ -216,7 +216,7 @@ Table 10-3 compares these four area types across four dimensions—visibility, l
 Table 10-3 Four area types of the Agent Virtual File System
 
 | Area | Visibility | Lifecycle | Read/Write | Concurrency Control |
-|---|---|---|---|---|
+|--------------|-----------------|------------------------|---------------------|-------------------|
 | Agent Private Workspace | That Agent only | Destroyed with the Agent instance | Read/Write | Not needed (private) |
 | Multi-Agent Shared Space | All collaborating Agents + User | Persists for the task duration, requires persistence | Read/Write | Required (optimistic lock / worktree) |
 | Mounted External Resources | Depends on external authorization | Determined by the external source | Mostly read-only, writes require caution | Managed by the external source |

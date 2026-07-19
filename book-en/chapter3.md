@@ -198,7 +198,7 @@ Looking back at the content of this section, we have actually introduced three c
 Table 3-1 Three Classification Systems for Memory Design
 
 | Classification System | Question Answered | Specific Categories |
-|-----------------------|------------------|---------------------|
+|----------------------------------|---------------|----------------------------------------------|
 | Memory Hierarchy (beginning of this chapter) | **Where is it stored?** | Trajectory (current session), User Long-Term Memory (cross-session), Business State (task stage) |
 | Storage Format (section "Four Storage Formats") | **How is it stored?** | Simple Notes, Enhanced Notes, JSON Cards, Advanced JSON Cards |
 | Cognitive Type (this section) | **What is stored?** | Episodic Memory (specific events), Semantic Memory (general knowledge), Procedural Memory (behavioral procedures) |
@@ -348,7 +348,7 @@ However, static word vectors have a fundamental limitation: they cannot handle p
 > Table 3-2 Comparison of ANNOY and HNSW Indexing Algorithms
 >
 > | Feature | ANNOY (Tree-based) | HNSW (Graph-based) |
-> |---------|--------------------|--------------------|
+> |-----------------|----------------------------------|--------------------------------------------|
 > | Build Speed | Fast | Slower |
 > | Memory Usage | Low | Higher |
 > | Incremental Updates | Not supported (requires full rebuild) | Supported |
@@ -412,7 +412,7 @@ This "joint attention" mechanism allows the cross-encoder to capture subtle sema
 Table 3-3 Three Core Metrics for Retrieval Quality
 
 | Metric | Intuitive Explanation |
-|------|---------|
+|-------------------------------|----------------------------------------------------------------|
 | recall@k[^ch3-recall] | The proportion of queries for which a document containing the correct answer appears in the top k retrieval results—answering "Were the right documents found?" It is the metric closest to the RAG requirement: as long as the relevant document enters the context, the LLM has a chance to use it. |
 | MRR (Mean Reciprocal Rank) | For each query, take the reciprocal of the rank of the first relevant document, then average across all queries—answering "How high up was the first hit?" Rank 1 gives a score of 1, rank 10 gives only 0.1. |
 | nDCG (normalized Discounted Cumulative Gain) | Comprehensively considers the rank and relevance of all relevant documents; the score discount for relevant documents increases the further down the ranking they appear—answering "What is the overall quality of the sorted list?" |

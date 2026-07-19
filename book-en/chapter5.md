@@ -176,7 +176,7 @@ Whether a system runs stably often depends less on the power of the model and mo
 Tasks can be categorized into four states using two dimensions: task clarity and degree of verification automation. Tasks with clear goals and automatically verifiable results are the best area for Agents to operate; when the goal is clear but verification still requires human oversight, the throughput ceiling is the human review speed; with automated feedback but a vague goal, the system will efficiently run in the wrong direction; lacking both, the Agent is largely useless. Table 5-1 shows these four states. The goal of the Harness is to push as many tasks as possible into the "clear goal + automated verification" quadrant.Table 5-1 Four Quadrants of Task Clarity and Verification Automation
 
 | | Results can be automatically verified | Results require manual verification |
-|---|---|---|
+|---------|--------------------------------------------|------------------------------------------|
 | **Clear goal** | Sweet spot: fixing bugs with test cases | Throughput-limited: code refactoring requires manual review |
 | **Vague goal** | Efficiently going off track: optimizing "code quality" with a linter | Hard to start: "make the UI look better" |
 

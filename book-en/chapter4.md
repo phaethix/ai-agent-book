@@ -16,7 +16,7 @@ Chapter 1 introduced the five categories of Agent tools (Perception, Execution, 
 Table 4-1 Invocation Direction and Target of Action for the Five Tool Categories
 
 | Tool Type | Invocation Direction | Target of Action |
-|-----------|----------------------|------------------|
+|-------------------------|-----------------------------------|-----------------------------------|
 | Perception Tools | Agent actively invokes | Acquire information |
 | Execution Tools | Agent actively invokes | Change the world |
 | Collaboration Tools | Agent actively invokes | Drive other Agents or humans |
@@ -213,7 +213,7 @@ Both the Sidecar and the Proposer-Reviewer mechanism introduce a second perspect
 Table 4-2 Comparison of Proposer-Reviewer Mechanism and Sidecar Mechanism
 
 | Dimension | Proposer-Reviewer | Sidecar |
-|------|---------|---------|
+|--------------|-----------------------------------------|-----------------------------------------|
 | **Execution Timing** | Before operation (pre-approval) or after operation (post-validation) | Parallel to the main model's streaming output, gates individual tool calls |
 | **Review Target** | The reasonableness of the operation or the result of the operation | The operation itself (tool call) |
 | **Review Perspective** | Independent model approval, modality-switching validation | Security/reliability verification |

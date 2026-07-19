@@ -21,7 +21,7 @@ Put more intuitively: **Agent = Brain + Eyes + Hands and Feet**. The brain is re
 These three components correspond exactly to three core concepts in RL (see Chapter 7). The following table is **optional reading**—if you don't have an RL background, feel free to skip it; it won't affect your understanding. It's only meant to help readers with RL backgrounds map their existing knowledge to the terminology of this book:
 
 | Intuitive Understanding | Implementation Component | Academic Concept (Optional) | Meaning |
-|---------|---------|---------|------|
+|---------------|----------------|------------------|---------------------------------------------|
 | **Brain** | LLM | **Policy** | The decision-making logic that determines "what to do next"—given the current information, choose the most appropriate action from all available options |
 | **Eyes** | Context | **Observation Space** | All the information the Agent can see—what it can see, read, remember, and which systems it can access |
 | **Hands and Feet** | Tools | **Action Space** | The complete set of things the Agent can do—what "means" are available, from sending messages to executing code to controlling interfaces |
@@ -29,7 +29,7 @@ These three components correspond exactly to three core concepts in RL (see Chap
 Understanding the roles of these three components and their interrelationships is the foundation for building effective Agent systems. We'll start with the most concrete component—tools (hands and feet)—and gradually delve into the brain (LLM) and eyes (context). Let's first look at how different types of Agents operate across these three dimensions:
 
 | Agent Product | Eyes (Perception) | Hands and Feet (Action) | Strategy |
-|---------|------|---------|------|
+|-----------------|------------------------|--------------------------|-----------------------------|
 | **Coding Agents (e.g., Cursor)** | Requirements documents, codebase, terminal environment | Open-ended (internal reasoning, code search, file read/write, command execution, etc.) | Incremental development: understand requirements → search relevant code → edit code → test and verify → debug and fix |
 | **Search Agents (e.g., Deep Research)** | Web resources, academic databases, local files | Open-ended (internal reasoning, search queries, web reading, summary generation) | Iterative deepening: adjust search direction based on existing information, gradually synthesize a complete report |
 | **Computer Control Agents (e.g., Manus)** | Computer screen, browser pages, file system | Open-ended (internal reasoning, clicking, typing, scrolling, screenshots, code execution, etc.) | Visual perception + operation: observe screen → identify target elements → perform actions → verify results |
@@ -231,7 +231,7 @@ Returning to the harness metaphor from earlier in this chapter: a model without 
 More precisely, all infrastructure outside the model belongs to the Harness. The core of the Harness is Context and Tools, around which three types of engineering safeguards are built:
 
 | Function | One-Sentence Responsibility | Relationship with Context/Tools |
-|----------|-----------------------------|--------------------------------|
+|----------|-------------------------------------------|------------------------------------------|
 | **Context** | Provides the model with perceptual information | Core capability |
 | **Tools** | Provides the model with means of action | Core capability |
 | **Constrain** | Sets behavioral boundaries—what can and cannot be done | Safety boundary built around context and tools |
@@ -265,7 +265,7 @@ These four stages are not replacements but layers of inclusion: Prompt Engineeri
 The table above lists the five functions of the Harness. The table below further elaborates on the core design principles for each function and their corresponding chapters in this book, helping readers build a mapping from concept to practice:
 
 | Function | Core Principle | Practical Example | See Chapter |
-|----------|----------------|-------------------|-------------|
+|----------|------------------------------------------|----------------------------------|---------|
 | **Context** | Information Sufficiency: Ensure the agent makes decisions based on sufficient information at every decision point | System prompts, knowledge bases, agent status bars, Sidecar bypass queries | Chapters 2 & 3 |
 | **Tools** | Clear Interface: Tool names are intuitive, parameters have examples, boundaries are explained | MCP tools, code interpreter, search tools | Chapter 4 |
 | **Constrain** | Fail-Safe Defaults: All capabilities are off by default and must be explicitly enabled (similar to mobile app permission management) | In Claude Code, every tool requires user authorization by default before execution | Chapter 4 |
@@ -350,7 +350,7 @@ In practice, workflows and autonomous agents are not mutually exclusive—many s
 The following table summarizes the current mainstream agent frameworks/platforms to help readers quickly identify the right one for their scenario:
 
 | Framework/Platform | Core Positioning | Orchestration Pattern | Development Approach | Applicable Scenarios |
-|---|---|---|---|---|
+|-------------------|--------------------|----------------|----------------|-------------------------|
 | **OpenAI Agents SDK** | Lightweight agent development library | Autonomous (tool loop) | Code-first | Rapid prototyping, single-agent applications |
 | **Claude Agent SDK** | Production-grade agent development framework | Autonomous (tool loop + sub-agents) | Code-first | Complex autonomous tasks, Coding Agent |
 | **LangChain / LangGraph** | General-purpose LLM application framework | Workflow + Autonomous | Code-first | Complex chain-of-thought, multi-step workflows |
@@ -402,7 +402,7 @@ Operations that are sensitive, irreversible, or high-risk should trigger human o
 Re-examining the structure of this book from the perspective of Harness engineering reveals that each chapter systematically builds a specific component of the Harness. At the same time, security is not an isolated topic in any single chapter but a cross-cutting concern throughout the entire book (a cross-cutting concern is an issue that affects multiple parts of a system, much like how logging in software engineering must permeate every module). The table below presents the Harness functions, security aspects, and corresponding chapters in a unified view:
 
 | Harness Focus | Corresponding Chapter | Core Content | Security Concerns |
-|-------------|---------|---------|-----------|
+|--------------------|--------------------|-------------------------------|------------------------|
 | Context Design | Chapter 2 (Context Engineering) | Prompt engineering, Agent status bar, context compression, Agent Skills | Prompt injection and information leakage |
 | Context Expansion (Knowledge Persistence) | Chapter 3 (Knowledge Base) | User memory, RAG, structured indexing, agentic RAG | Sensitive information exposure, privacy protection |
 | Tool Design and Security Constraints | Chapter 4 (Tool Design) | Tool classification, permission control, MCP standard, asynchronous architecture | Misoperation, unauthorized access, irreversible operations |

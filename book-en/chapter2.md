@@ -424,7 +424,7 @@ The answer: that single line of timestamp caused the KV Cache to be completely i
 > Table 2-1 Roles of Query, Key, and Value in the Attention Mechanism
 >
 > | Vector | Meaning | In this example |
-> |------|------|-------------|
+> |-------|-----------------------------------------|-----------------------------------------------|
 > | **Query** | The "search request" issued by the current word | "like" asks: which word is most relevant to me? |
 > | **Key** | The "label" of each word, used for matching the search | "Beijing"'s label leans towards "location," "weather"'s label leans towards "meteorology" |
 > | **Value** | The "content" of each word, extracted upon a successful match | After matching "weather," extract its semantic information |

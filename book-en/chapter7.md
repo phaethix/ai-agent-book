@@ -29,7 +29,7 @@ The introduction provided a map of the three stages. This section explains the m
 **Table 7-1: The Three Stages of Forging Model Capabilities**
 
 | Stage | Data Used | Optimization Objective | What is Learned | Typical Cost |
-|-------|-----------|-----------------------|-----------------|--------------|
+|-------------|---------------------|--------------------|---------------------|-------------------|
 | **Pre-training** | Massive raw internet text | Predict the next token | Language rules, world knowledge, basic reasoning | Very High (millions to tens of millions USD) |
 | **SFT** | Thousands to tens of thousands of "input-output" demonstration pairs | Predict the next token (loss calculated only on the response) | Instruction following, output format, style, process protocol | Low (hours to days) |
 | **RL** | Task + Reward function (no standard answer) | Maximize expected reward | Transferable decision-making strategy, newly discovered solutions | High (often tens to hundreds of times that of SFT) |
@@ -77,7 +77,7 @@ We've repeatedly said "SFT memorizes, RL generalizes." Now let's explain the und
 **Table 7-2: Essential Comparison of SFT and RL**
 
 | Dimension | SFT (Supervised Fine-Tuning) | RL (Reinforcement Learning) |
-|-----------|------------------------------|-----------------------------|
+|-----------------|--------------------------------------|----------------------------------------|
 | Optimization Objective | Maximize probability of labeled answer (Maximum Likelihood) | Maximize expected reward |
 | Training Signal | Single standard answer (supervision for every token) | Multiple self-generated responses + reward (one success/failure signal per response) |
 | Data Form | "Input-Output" demonstration pairs | Task + Reward function (no standard answer needed) |
@@ -124,7 +124,7 @@ Table 7-3 compares the key components of various Agent systems, revealing the un
 **Table 7-3 Comparison of Key Elements in Different Agent Systems**
 
 | Agent Type | Environment | Action Space | Reward Signal |
-|---------|------|---------|---------|
+|---------------|------------------------|-------------------------------|-------------------------|
 | **Newborn Gazelle** | Terrain, gravity, body posture | Continuous high-dimensional (muscle group contractions) | Balance (+), Falling (-) |
 | **Vacuum Robot** | Room layout, battery level | Discrete (direction, vacuum, charge) | Cleaned area (+), Battery depleted (-) |
 | **Chess Grandmaster** | Board state, time limit | Discrete finite (legal moves) | Win (+1), Loss (-1) |
@@ -415,7 +415,7 @@ Table 7-4 summarizes the core characteristics of mainstream methods. When readin
 Table 7-4 Comparison of Post-Training and Inference-Time Optimization Methods
 
 | Method | Type | Core Idea | Advantage | Disadvantage | Applicable Scenario |
-|------|------|---------|------|------|---------|
+|--------------|---------------|---------------|--------------|------------------|-------------------------|
 | **REINFORCE** | Online RL Algorithm | Updates the policy using the final reward of the entire trajectory | Simple to implement | High variance, unstable training | Theoretical baseline; rarely used directly in its original form, but its variants with baselines (RLOO, REINFORCE++, etc.) are among the current mainstream; GRPO is essentially REINFORCE with a group-relative baseline |
 | **PPO** | Online RL Algorithm | Limits the update magnitude per step to prevent the policy from "going off track" | Stable; the value network provides finer-grained credit assignment | Requires additional training and storage of a value network; sensitive to hyperparameters | Multi-turn agents, long-trajectory credit assignment |
 | **GRPO** | Online RL Algorithm | Samples multiple trajectories for the same problem and compares "which is better" within the group | No value network needed, low cost | Advantage is averaged over the entire response, leading to coarse credit assignment; relies on discriminative rewards within the group | Single-turn/short-trajectory tasks, scenarios with good reward discrimination |
