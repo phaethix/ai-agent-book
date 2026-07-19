@@ -68,7 +68,7 @@ pandoc "${CHAPTERS[@]}" \
     -V classoption=device=normal \
     -V author="Li Bojie" \
     --metadata title-meta="Deep Understanding of AI Agents: Design Principles and Engineering Practice" \
-    --metadata author-meta="Li Bojie" \
+    --metadata author-meta="Li Bojie (English translation: Devaraj)" \
     -H preamble.tex \
     --include-before-body=cover.tex \
     --highlight-style=kate \
