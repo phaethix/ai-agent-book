@@ -1,7 +1,26 @@
 % ===== ElegantBook customizations for 《深入理解 AI Agent》 =====
 % Accent color comes from ElegantBook's cyan theme: \structurecolor = RGB(31,186,190)
 
-% ── Unicode glyph fallback (Times/Courier lack these) ─────────────
+% ── Text & math fonts: Palatino look, matching the author's papers ──
+% The papers' preprint style (arxiv.sty) uses mathpazo (Palatino body +
+% matching math) with helvet[scaled=.90] sans. These are the XeLaTeX-native
+% equivalents: TeX Gyre Pagella (Palatino) text + TeX Gyre Pagella Math.
+% Sans stays the class default (TeX Gyre Heros, Helvetica clone) — already
+% equivalent to the papers' helvet. unicode-math loads after the class's
+% amsmath, so math switches from Computer Modern to Pagella Math coherently.
+\usepackage{unicode-math}
+% Loaded by filename (like the class's own TeXGyreTermesX setup): macOS
+% fontconfig doesn't index texmf-dist, so family-name lookup would fail.
+\setmainfont{texgyrepagella}[
+  UprightFont = *-regular,
+  BoldFont = *-bold,
+  ItalicFont = *-italic,
+  BoldItalicFont = *-bolditalic,
+  Extension = .otf,
+  Scale = 1.0]
+\setmathfont{texgyrepagella-math}[Extension = .otf]
+
+% ── Unicode glyph fallback (the text/mono fonts lack these) ──────
 \usepackage{newunicodechar}
 % macOS has Arial Unicode MS / Heiti SC; on Linux those Apple fonts are absent,
 % so fall back to broad-coverage libre fonts to keep the build working.
