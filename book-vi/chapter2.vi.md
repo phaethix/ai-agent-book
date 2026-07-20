@@ -837,6 +837,8 @@ Agent Thanh trạng thái là cách triển khai nguyên tắc này hàng ngày 
 
 [^ch2-5]: Li, Bojie and Noah Shi. *Interaction Scaling: Grounding the Third Axis of Test-Time Compute.* arXiv:2607.11598, 2026.
 
+Đứng từ góc nhìn này để xem xét Loop Engineering (kỹ thuật vòng lặp) nằm ở cuối cung tiến hóa của Chương 1 (Chương 10 sẽ triển khai chủ đề này cùng hệ thống cộng tác đa Agent), sẽ thấy về bản chất nó chính là việc kỹ thuật hóa trục thứ ba "tương tác": mỗi vòng quay của vòng lặp sở dĩ tạo ra tiến bộ thực sự là vì khâu xác minh đã ghi các quan sát từ thế giới bên ngoài trở lại vào ngữ cảnh, bơm vào thông tin mới mà bản thân mô hình không thể tự nghĩ ra; rút bỏ bước này đi, vòng lặp chỉ khiến mô hình xáo đi xáo lại chỗ thông tin cũ tại chỗ. Sự đồng thuận của giới công nghiệp rằng "nút thắt cổ chai của vòng lặp nằm ở bộ xác minh, chứ không nằm ở mô hình", với phát hiện trong dấu ngoặc ở trên — "thước đo" dùng để đo lường sự cải thiện phải bắt nguồn từ quan sát thực tế, nếu không vòng lặp sẽ âm thầm quay không tải — thực chất là cùng nói về một điều.
+
 ### Agent Thành phần thanh trạng thái
 
 Dựa trên cơ sở lý thuyết trên, thanh trạng thái Agent bao gồm các loại thông tin sau:
