@@ -214,6 +214,8 @@ class ExperienceAgent(Agent):
             True if questions are similar
         """
         # Simple keyword overlap for now
+        if q1 is None or q2 is None:
+            return False
         q1_words = set(q1.lower().split())
         q2_words = set(q2.lower().split())
         
