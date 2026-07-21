@@ -7,7 +7,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 SELECTION="${1:-all}"
 
-for command in pandoc pdftoppm; do
+for command in pandoc pdftoppm python3; do
     if ! command -v "$command" >/dev/null 2>&1; then
         echo "Error: $command is required." >&2
         exit 1
@@ -98,6 +98,8 @@ build_edition() {
             --metadata lang="$language" \
             --metadata identifier="https://github.com/bojieli/ai-agent-book#$language"
     )
+
+    python3 "$ROOT/flatten_epub_toc.py" "$edition_dir/$output"
 
     if command -v epubcheck >/dev/null 2>&1; then
         epubcheck "$edition_dir/$output"

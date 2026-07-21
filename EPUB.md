@@ -1,6 +1,6 @@
 # Build the EPUB editions
 
-The repository can build EPUB 3 editions for Chinese, English, Tamil, and Vietnamese from the same Markdown sources used by the PDF editions.
+The repository can build EPUB 3 editions for Chinese, English, Tamil, and Vietnamese from the same Markdown sources used by the PDF editions. Each table of contents groups entries by chapter and presents every section within a chapter as one flat list with fully qualified section numbers.
 
 Install [Pandoc](https://pandoc.org/), Poppler (`pdftoppm`), and optionally [EPUBCheck](https://www.w3.org/publishing/epubcheck/). The builder uses each PDF's first page as the corresponding EPUB cover. When EPUBCheck is available, the builder validates every generated book.
 
